@@ -24,7 +24,7 @@ covariance_obs = cov(reshape(normalized_images,784,60000)');
 %4)Compute eigen values
 [eig_vec,eig_val] = eig(covariance_obs);
 
-for dCount = 1:2:60
+for dCount = 1:2:d_max
     %5)Fetch projection Matrix
     [Proj_Matrix,Proj_eig_values] = fn_FetchProjectionMatrix(eig_vec,eig_val,dCount);
     %6)Dimension reduction 
@@ -52,8 +52,8 @@ for dCount = 1:2:60
         [~,index_p] = max(p_x);
         classified_labels(iCount,1) = index_p - 1;
     end
-    [C,order] = confusionmat(labels_Test,classified_labels);
-    error_Classification(dCount) = (10000-trace(C))/100;
+    [C(:,:,dCount),order] = confusionmat(labels_Test,classified_labels);
+    error_Classification(dCount) = (10000-trace(C(:,:,dCount)))/100;
 
 end
 
@@ -67,3 +67,6 @@ stem(15,error_Classification(15),'linewidth',2,'marker','x','markersize',10);
 ylabel('classification error (%)');
 title('Classification error as a function of eigen depth in PCA');
 legend('error','min-error','verification');
+optimal_d = error_Classification(index_min);
+error = error_Classification(index_min);
+ConfusionMatrix = 

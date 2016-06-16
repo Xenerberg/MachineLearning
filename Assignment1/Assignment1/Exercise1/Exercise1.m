@@ -3,7 +3,7 @@ function [par] = Exercise1(k)
     Data = load('Data.mat');
     Input = Data.Input;
     Output = Data.Output;
-    k = 5;%K-Fold validation value
+    %k = 5;%K-Fold validation value
     size_Data = floor(size(Input,2));
     subsampleSize = floor(size_Data/k);
     last_SubsampleSize = subsampleSize + mod(size_Data,5);
@@ -79,10 +79,6 @@ function [par] = Exercise1(k)
 
     save('params','par');
 end
-Simulate_robot(0.5,-0.03);
-Simulate_robot(0,0.05);
-Simulate_robot(1,0);
-Simulate_robot(1,0.05);
-Simulate_robot(-1,-0.05);
+
 
 
