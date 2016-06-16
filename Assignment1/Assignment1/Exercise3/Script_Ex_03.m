@@ -33,7 +33,8 @@ points_o = reshape(gesture_o,600,3);
 
 figure;
 colororder = [0 0 1;0 0 0;1 0 0;0 1 0;1 0 1;1 1 0;0 1 1];
-set(gca,'colororder',colororder);
+%set(gca,'colororder',colororder);
+set(groot,'defaultAxesColorOrder',colororder); %2014b
 for iCount_1 =1:3
     for iCount_2 = 1:7
        subplot(2,2,iCount_1);
@@ -61,7 +62,8 @@ points_o = reshape(gesture_o,600,3);
 [idx_o, C_o] = fn_NUBF_Cluster(points_o,7,[0.08,0.05,0.02]);
 figure;
 colororder = [0 0 1;0 0 0;1 0 0;0 1 0;1 0 1;1 1 0;0 1 1];
-set(gca,'colororder',colororder);
+%set(gca,'colororder',colororder); 2014a
+set(groot,'defaultAxesColorOrder',colororder); %2014b
 for iCount_1 =1:3
     for iCount_2 = 1:7
        subplot(2,2,iCount_1);
